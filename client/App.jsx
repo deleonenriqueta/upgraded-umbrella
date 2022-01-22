@@ -50,7 +50,7 @@ class App extends React.Component {
     return (
       <div>
         <Overview productId={this.state.id} appAddToCarousel={this.appAddToCarousel} />
-        <Comparison productId={this.state.id} changeId={this.changeId} addToCarousel={this.appAddToCarousel}/>
+        <Comparison productId={this.state.id} changeId={this.changeId} shouldAddToCarousel={this.state.shouldAddToCarousel}/>
         <Reviews productId={this.state.id}/>
       </div>
     )

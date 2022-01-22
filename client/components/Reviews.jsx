@@ -3,6 +3,7 @@ import ReviewSummary from './Reviews/ReviewSummary.jsx';
 import ReviewList from './Reviews/ReviewList.jsx';
 import WriteReviewModal from './Reviews/WriteReviewModal.jsx';
 import axios from 'axios';
+const BASE_URL = process.env.PUBLIC_IP || 'localhost:3000';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class Reviews extends React.Component {
 
   getReviews(productId) {
     axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE_URL}`,
       url: '/reviews',
       method: 'get',
       params: { productId: productId }
@@ -82,7 +83,7 @@ class Reviews extends React.Component {
 
   getReviewsMeta(productId) {
     axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE_URL}`,
       url: '/reviews/meta',
       method: 'get',
       params: { productId: productId }
@@ -173,7 +174,7 @@ class Reviews extends React.Component {
     let username = document.getElementById('username').value;
     let email = document.getElementById('email').value;
     axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE_URL}`,
       url: '/reviews',
       method: 'post',
       params: {

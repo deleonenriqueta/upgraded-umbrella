@@ -8,6 +8,9 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
+    env: {
+      NODE_ENV: 'development'
+    },
     rules: [
       {
         test: /\.?jsx$/,
@@ -44,5 +47,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "client", "index.html"),
     }),
+    new webpack.DefineLugin({
+      'process.env.PORT': JSON.stringify(process.env.PORT),
+      'process.env.API_KEY': JSON.stringify(process.env.API_KEY),
+      'process.env.PUBLIC_IP': JSON.stringify(process.env.PUBLIC_IP)
+    })
   ],
 }

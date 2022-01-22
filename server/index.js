@@ -3,8 +3,11 @@ const { getAllReviews, getAllReviewsMeta, addReview } = require('./ReviewsServic
 const { getStarReviews, getProductOverview, getStyles } = require('./OverviewService');
 const { createProductObj, addRatingsData, addRelatedData, addImageData } = require('./ComparisonService');
 
+let PORT = process.env.PORT;
+if (PORT === null || PORT === undefined) {
+  PORT = 3000;
+}
 const app = express();
-const port = 3000;
 
 app.use(express.static('./client/dist'));
 
@@ -141,6 +144,6 @@ app.get('/addImageData', (req, res) => {
 
 
 
-app.listen(port, () => {
-  console.log(`Upgraded Umbrella app listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Upgraded Umbrella app listening at http://localhost:${PORT}`);
 });
