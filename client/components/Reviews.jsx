@@ -8,15 +8,45 @@ class Reviews extends React.Component {
     super(props);
 
     this.state = {
-      productId: 59554,
       reviews: [],
-      averageRating: null
+      averageRating: null,
     }
   }
 
   componentDidMount() {
-    this.getReviews(this.state.productId);
+    this.getReviews(this.props.productId);
   }
+
+  getAverageRating(reviews) {
+    let ratingSum = 0;
+    for (let review of reviews) {
+      ratingSum += review.rating;
+    }
+    let averageRating = ratingSum / reviews.length;
+    return averageRating;
+  }
+
+  //Creates a 5 element Number array, where each element represents the fill status of the star
+  createStarRatingArray(reviews) {
+    let starRatingArray = [];
+    let averageRating = this.getAverageRating(reviews);
+
+    while (averageRating > 0) {
+      averageRating--;
+      if (averageRating > 0) {
+        starRatingArray.push(1);
+      } else {
+        starRatingArray.push(1 + averageRating)
+      }
+    }
+
+    while (starRatingArray.length < 5) {
+      starRatingArray.push(0);
+    }
+
+    return starRatingArray;
+  }
+  //Change to 'http://100.24.25.169'
 
   getReviews(productId) {
     axios({
@@ -29,8 +59,9 @@ class Reviews extends React.Component {
       this.setState({
         reviews: reviews
       }, () => this.sort());
-    });
-    //TODO handle case where we do not successfully retrieve a productId by letting client display error
+    }).catch(err => {
+      console.log(`Error fetching product with ${productId}`, err);
+    })
   }
 
   /*
@@ -87,10 +118,18 @@ class Reviews extends React.Component {
 
   render() {
     return(<>
-      <h3>Ratings &amp; Reviews</h3>
+      <div>RATINGS &amp; REVIEWS</div>
       <section id='reviews'>
-        <ReviewSummary reviews={this.state.reviews}/>
-        <ReviewList reviews={this.state.reviews} sort={this.sort.bind(this)} sortOption={this.state.sortOption}/>
+        <ReviewSummary
+          reviews={this.state.reviews}
+          averageRating={this.getAverageRating(this.state.reviews)}
+          starRatingArray={this.createStarRatingArray(this.state.reviews)}
+        />
+        <ReviewList
+          reviews={this.state.reviews}
+          sort={this.sort.bind(this)}
+          sortOption={this.state.sortOption}
+        />
       </section>
     </>)
   }

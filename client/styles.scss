@@ -1,12 +1,105 @@
-#reviews {
-    display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 10px;
+div {
+    font-family: sans-serif;
+    font-weight: lighter;
 }
 
-h2 {
-    color: aquamarine;
+#reviews {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+
+    .reviewSummary {
+        grid-row: 1/4;
+        display: flex;
+        flex-direction: column;
+
+        .averageRating {
+            font-weight: 900;
+            font-size: xx-large;
+            font-family: 'Trebuchet MS';
+        }
+
+        .averageRatingDisplay {
+            display: flex;
+            height: 1em;
+            gap: 1em;
+            align-items: center;
+            margin-bottom: 10px;
+
+            .star {
+                height: 100%;
+            }
+
+            .empty-star {
+                height: 75%;
+            }
+        }
+
+        .recommend-percent {
+            margin: 0px 10px 10px 0px;
+        }
+
+        .rating-breakdown {
+            display: flex;
+            align-items: center;
+
+            .rating-breakdown-bar {
+                margin-left: 10px;
+                width: 240px;
+            }
+        }
+    }
+
+    .reviewList {
+        grid-row: 1/4;
+
+        .review-tile {
+            border-bottom: black;
+
+            .rating-display {
+                display: flex;
+                height: 1em;
+                align-items: center;
+                margin: 20px 0px 10px 0px;
+
+                .star {
+                    height: 100%;
+                }
+
+                .empty-star {
+                    height: 75%;
+                }
+
+                .review-info {
+                    font-size: small;
+                }
+
+                .review-check-mark {
+                    height: 1em;
+                }
+            }
+
+            .review-title {
+                font-weight: 900;
+                font-size: large;
+            }
+
+            .review-body {
+                margin: 10px 10px 10px 10px;
+            }
+
+            .helpful {
+                display: flex;
+                font-size: small;
+
+                .helpful-clickable {
+                    text-decoration: underline;
+                    margin: 0px 5px 0px 5px;
+                }
+            }
+        }
+    }
 }
 
 #overview{
@@ -192,6 +285,12 @@ h2 {
     height: 2em;
 }
 
+#cartAndStar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 #cart {
     display: flex;
     flex-direction: row;
@@ -202,11 +301,20 @@ h2 {
     border-color: gray;
 }
 
+
 .cartElem {
     padding: 0.25em;
 }
 
-
+#faveStar {
+    display: inline-block;
+    border-style: solid;
+    border-color: black;
+    width:8%;
+    max-height: 8%;
+    margin-left: 10%;
+    padding: 0.6%;
+}
 
 #thumbnailList {
     position: absolute;
@@ -282,6 +390,9 @@ h2 {
 .selected {
     border-color: red;
 }
+
+
+
 
 /** COMPARISON COMPONENT**/
 

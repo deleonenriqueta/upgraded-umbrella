@@ -15,16 +15,22 @@ class StyleInfo extends React.Component {
             size: '',
             quantity: [],
             cart: [],
-            skuSelected: ''
+            skuSelected: '',
+            favorited: false
         }
         this.updateSize = this.updateSize.bind(this);
         this.getQuantityBySize = this.getQuantityBySize.bind(this);
         this.updateCart = this.updateCart.bind(this);
+        this.toggleFavorite = this.toggleFavorite.bind(this);
+        
     }
 
     //Calling componentDidMount 
+
+    //s3, cloudfront optimize how fast data can be downloaded from s3
     componentDidMount() {
         this.getPrice();
+        
     }
 
     componentDidUpdate(prevProps) {
@@ -35,14 +41,16 @@ class StyleInfo extends React.Component {
                 skuSelected: '',
                 salePrice: 0,
                 hasSale: false,
-                originalPrice: 0
+                originalPrice: 0,
             }, () => {
                 this.getPrice();
                 this.setState({
-                    availableSizes: this.parseAvailableSizes()
+                    availableSizes: this.parseAvailableSizes(),
+                    styleRows: this.parseStyles()
                 });
             });
         }
+        
     }
 
     updateCart() {
@@ -63,6 +71,19 @@ class StyleInfo extends React.Component {
             }
         }
         return availableSizes;
+    }
+
+    toggleFavorite() {
+        console.log("productId", this.props.productId);
+        this.setState({
+            favorited: !this.state.favorited
+        }, () => {
+            this.props.addToCarousel({
+                productID: this.props.productId,
+                status: this.state.favorited === true ? "favorited" : "unfavorited"
+            });
+        })
+
     }
 
     //Sets the size variable and calls getQuantityBySize as a callback to ensure state is set before execution
@@ -141,7 +162,13 @@ class StyleInfo extends React.Component {
                 </div>
                 <StyleList styles={this.state.styleRows} updateStyle={this.props.updateStyle} currStyle={this.props.currStyle}/>
                 <CartSpecifics availableSizes={this.state.availableSizes} updateSize={this.updateSize} size={this.state.size} quantity={this.state.quantity}/>
-                <AddToCart updateCart={this.updateCart} addToCarousel={this.props.addToCarousel}/>
+                <AddToCart 
+                    updateCart={this.updateCart} 
+                    addToCarousel={this.props.addToCarousel} 
+                    toggleFavorite={this.toggleFavorite} 
+                    favorited={this.state.favorited} 
+                />
+                    
             </div>
         )
     }
