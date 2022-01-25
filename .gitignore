@@ -2,6 +2,7 @@ node_modules
 config.js
 coverage/
 *.pem
+*.pem.pub
 login.sh
 client/dist/bundle.js
 envVars.env
