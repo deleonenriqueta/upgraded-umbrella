@@ -1,12 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const { getAllReviews, getAllReviewsMeta, addReview } = require('./ReviewsService.js');
 const { getStarReviews, getProductOverview, getStyles } = require('./OverviewService');
 const { createProductObj, addRatingsData, addRelatedData, addImageData } = require('./ComparisonService');
 
 let PORT = process.env.PORT;
-if (PORT === null || PORT === undefined) {
-  PORT = 3000;
-}
+// if (PORT === null || PORT === undefined) {
+//   PORT = 3000;
+// }
 const app = express();
 
 app.use(express.static('./client/dist'));

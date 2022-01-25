@@ -1,3 +1,4 @@
+require('dotenv').config();
 import React from 'react';
 import axios from 'axios';
 import Related from './Comparison/Related.jsx';
