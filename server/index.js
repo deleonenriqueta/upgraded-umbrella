@@ -5,9 +5,9 @@ const { getAllReviews, getAllReviewsMeta, addReview, markHelpful, reportReview }
 const { createProductObj, addRatingsData, addRelatedData, addImageData } = require('./ComparisonService');
 
 let PORT = process.env.PORT;
-// if (PORT === null || PORT === undefined) {
-//   PORT = 3000;
-// }
+if (PORT === null || PORT === undefined) {
+  PORT = 3000;
+}
 const app = express();
 
 app.use(express.static('./client/dist'));
