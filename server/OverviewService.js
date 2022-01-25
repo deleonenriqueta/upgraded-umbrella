@@ -11,7 +11,6 @@ const getStarReviews = (productId) => {
         params: { product_id: productId }
     })
     .then((results) => {
-        // console.log('Testing inside of overview Service:', results);
         return results;
     })
     .catch(err => {
@@ -44,6 +43,38 @@ const getStyles = (productId) => {
     });
 }
 
+const getCart = () => {
+    return axios({
+        baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
+        url: '/cart',
+        method: 'get',
+        headers: { 'Authorization': API_TOKEN },
+    })
+    .then(data => {
+        return data;
+    })
+    .catch(err => {
+        console.log("Failed inside of getCart of OverviewService.js", err);
+    });
+}
+
+const postCart = (skuID, numItems) => {
+    var promisesArr = [];
+    for(var i = 0; i < numItems; i++) {
+        promisesArr.push(axios({
+            baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
+            url: '/cart',
+            method: 'post',
+            headers: {'Authorization': API_TOKEN},
+            data: {sku_id: parseInt(skuID)}
+        }))
+    }
+    return Promise.all(promisesArr)
+    .catch(err => {
+        console.log('Failed inside of postCart of OverviewService.js', err);
+    })
+}
+
 module.exports = {
-    getStarReviews, getProductOverview, getStyles,
+    getStarReviews, getProductOverview, getStyles, getCart, postCart
 }
