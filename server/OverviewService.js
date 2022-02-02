@@ -1,5 +1,6 @@
 const axios = require('axios');
-const { API_TOKEN } = process.env.API_KEY || require('../config.js');
+require('dotenv').config();
+const API_TOKEN = process.env.API_KEY || require('../config.js');
 
 const getStarReviews = (productId) => {
     return axios({
