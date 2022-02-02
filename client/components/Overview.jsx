@@ -5,6 +5,7 @@ import ExpandedView from './Overview/ExpandedView.jsx';
 import SellingPoints from './Overview/SellingPoints.jsx';
 import ThumbnailList from './Overview/ThumbnailList.jsx';
 import exampleData from '../exampleData/OverviewData.js';
+import BASE from '../config.js';
 
 //Create mock data structure instead of using exampleData
 
@@ -85,7 +86,7 @@ class Overview extends React.Component {
 
   getProductOverview(productID) {
     return axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/productOverview',
       method: 'get',
       params: { productID: productID }
@@ -100,7 +101,7 @@ class Overview extends React.Component {
 
   getStyles(productID, obj) {
     return axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/styles',
       method: 'get',
       params: { productID: productID }
@@ -121,7 +122,7 @@ class Overview extends React.Component {
 
   getStarReviews(productID, obj) {
     return axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/starReviews',
       method: 'get',
       params: { productID: productID }
@@ -152,7 +153,7 @@ class Overview extends React.Component {
     var endIndex = Math.min(arr.length, this.state.currPhotoIndex + 7);
     var startIndex = Math.max(endIndex - 7, 0);
     return ({
-      photos: arr.slice(startIndex, endIndex), 
+      photos: arr.slice(startIndex, endIndex),
       photosIndices: {start: startIndex, end: endIndex}
     });
   }
@@ -274,7 +275,7 @@ class Overview extends React.Component {
             currPhotoIndex={this.state.currPhotoIndex}
             allPhotos={this.state.allPhotos}
           />
-        : <div></div> 
+        : <div></div>
         }
         {this.state.zoom === 'default'
           ? <DefaultView

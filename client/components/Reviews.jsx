@@ -3,6 +3,7 @@ import ReviewSummary from './Reviews/ReviewSummary.jsx';
 import ReviewList from './Reviews/ReviewList.jsx';
 import WriteReviewModal from './Reviews/WriteReviewModal.jsx';
 import axios from 'axios';
+import BASE from '../config.js';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class Reviews extends React.Component {
 
   getReviews(productId) {
     axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/reviews',
       method: 'get',
       params: { productId: productId }
@@ -84,7 +85,7 @@ class Reviews extends React.Component {
 
   getReviewsMeta(productId) {
     axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/reviews/meta',
       method: 'get',
       params: { productId: productId }
@@ -175,7 +176,7 @@ class Reviews extends React.Component {
     let username = document.getElementById('username').value;
     let email = document.getElementById('email').value;
     axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/reviews',
       method: 'post',
       data: {
@@ -198,7 +199,7 @@ class Reviews extends React.Component {
   onHelpfulClick(event) {
     let reviewId = Number(event.target.getAttribute('value'));
     axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: `/reviews/${reviewId}/helpful`,
       method: 'put'
     }).catch(err => {
@@ -209,7 +210,7 @@ class Reviews extends React.Component {
   onReportClick(event) {
     let reviewId = Number(event.target.getAttribute('value'));
     axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: `/reviews/${reviewId}/report`,
       method: 'put'
     }).catch(err => {

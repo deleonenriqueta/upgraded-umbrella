@@ -3,6 +3,7 @@ import axios from 'axios';
 import Related from './Comparison/Related.jsx';
 import Outfit from './Comparison/Outfit.jsx';
 import 'regenerator-runtime/runtime';
+import BASE from './config.js';
 
 class Comparison extends React.Component {
   constructor(props) {
@@ -94,7 +95,7 @@ fillCarousels (productId) {
 createProductObj (productId, cb) {
   var productObj;
   axios({
-    baseURL: 'http://localhost:3000',
+    baseURL: `http://${BASE.BASE}`,
     url: '/productData',
     method: 'get',
     params: {productId: productId}
@@ -103,7 +104,7 @@ createProductObj (productId, cb) {
     return productObj;
   }).then(productObj => {
     return axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/addRatingsData',
       method: 'get',
       params: {productId: productObj.id}
@@ -113,7 +114,7 @@ createProductObj (productId, cb) {
     return productObj;
   }).then(productObj => {
     return axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/addRelatedData',
       method: 'get',
       params: {productId: productObj.id}
@@ -128,7 +129,7 @@ createProductObj (productId, cb) {
     return productObj;
   }).then(productObj => {
     return axios({
-      baseURL: 'http://localhost:3000',
+      baseURL: `http://${BASE.BASE}`,
       url: '/addImageData',
       method: 'get',
       params: {productId: productObj.id}
