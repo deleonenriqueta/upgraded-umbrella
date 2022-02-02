@@ -3,7 +3,7 @@ import ReviewSummary from './Reviews/ReviewSummary.jsx';
 import ReviewList from './Reviews/ReviewList.jsx';
 import WriteReviewModal from './Reviews/WriteReviewModal.jsx';
 import axios from 'axios';
-import CONFIG from '../config.js';
+import CONFIG from '../config/config.js';
 
 class Reviews extends React.Component {
   constructor(props) {

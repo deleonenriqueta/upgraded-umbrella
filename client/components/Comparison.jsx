@@ -3,7 +3,7 @@ import axios from 'axios';
 import Related from './Comparison/Related.jsx';
 import Outfit from './Comparison/Outfit.jsx';
 import 'regenerator-runtime/runtime';
-import CONFIG from '../config.js';
+import CONFIG from '../config/config.js';
 
 
 class Comparison extends React.Component {

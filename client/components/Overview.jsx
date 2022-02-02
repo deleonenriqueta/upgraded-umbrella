@@ -5,7 +5,7 @@ import ExpandedView from './Overview/ExpandedView.jsx';
 import SellingPoints from './Overview/SellingPoints.jsx';
 import ThumbnailList from './Overview/ThumbnailList.jsx';
 import exampleData from '../exampleData/OverviewData.js';
-import CONFIG from '../config.js';
+import CONFIG from '../config/config.js';
 
 //Create mock data structure instead of using exampleData
 
