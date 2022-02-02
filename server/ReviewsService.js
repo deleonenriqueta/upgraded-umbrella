@@ -1,6 +1,6 @@
 const axios = require('axios');
 require('dotenv').config();
-const CONFIG = require('../config.js');
+const CONFIG = require('../client/config/config.js');
 
 const getAllReviews = (productId) => {
   return axios({
