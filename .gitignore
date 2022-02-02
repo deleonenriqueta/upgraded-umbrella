@@ -4,7 +4,7 @@ coverage/
 *.pem
 *.pem.pub
 login.sh
-client/dist/bundle.js
+bundle.js
 
 
 ##API Keys ##
