@@ -1,13 +1,13 @@
 const axios = require('axios');
 require('dotenv').config();
-const API_TOKEN = process.env.API_KEY || require('../config.js');
+const CONFIG = require('../config.js');
 
 const getStarReviews = (productId) => {
     return axios({
         baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
         url: '/reviews/meta',
         method: 'get',
-        headers: { 'Authorization': API_TOKEN },
+        headers: { 'Authorization': CONFIG.API_TOKEN },
         params: { product_id: productId }
     })
     .then((results) => {
@@ -23,7 +23,7 @@ const getProductOverview = (productId) => {
         baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
         url: '/products/' + productId,
         method: 'get',
-        headers: { 'Authorization': API_TOKEN },
+        headers: { 'Authorization': CONFIG.API_TOKEN },
     })
     .catch(err => {
         console.log('Failing inside of getProductOverview of overviewService.js', err);
@@ -35,7 +35,7 @@ const getStyles = (productId) => {
         baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
         url: `/products/${productId}/styles`,
         method: 'get',
-        headers: { 'Authorization': API_TOKEN },
+        headers: { 'Authorization': CONFIG.API_TOKEN },
         //params: {product_id: productId}
     })
     .catch(err => {
@@ -48,7 +48,7 @@ const getCart = () => {
         baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
         url: '/cart',
         method: 'get',
-        headers: { 'Authorization': API_TOKEN },
+        headers: { 'Authorization': CONFIG.API_TOKEN },
     })
     .then(data => {
         return data;
@@ -65,7 +65,7 @@ const postCart = (skuID, numItems) => {
             baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
             url: '/cart',
             method: 'post',
-            headers: {'Authorization': API_TOKEN},
+            headers: {'Authorization': CONFIG.API_TOKEN},
             data: {sku_id: parseInt(skuID)}
         }))
     }

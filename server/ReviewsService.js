@@ -1,13 +1,13 @@
 const axios = require('axios');
 require('dotenv').config();
-const API_TOKEN = process.env.API_KEY || require('../config.js');
+const CONFIG = require('../config.js');
 
 const getAllReviews = (productId) => {
   return axios({
     baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
     url: '/reviews',
     method: 'get',
-    headers: {'Authorization' : API_TOKEN },
+    headers: {'Authorization' : CONFIG.API_TOKEN },
     params: {
       product_id: productId,
       sort: 'newest',
@@ -21,7 +21,7 @@ const getAllReviewsMeta = (productId) => {
     baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
     url: '/reviews/meta',
     method: 'get',
-    headers: {'Authorization' : API_TOKEN },
+    headers: {'Authorization' : CONFIG.API_TOKEN },
     params: { product_id: productId }
   });
 }
@@ -41,7 +41,7 @@ const addReview = (productId, rating, summary, body, recommend, name, email) => 
       baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
       url: '/reviews',
       method: 'post',
-      headers: {'Authorization' : API_TOKEN },
+      headers: {'Authorization' : CONFIG.API_TOKEN },
       data: {
         'product_id': productId,
         'rating': rating,
@@ -64,7 +64,7 @@ const markHelpful = (reviewId) => {
     baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
     url: `/reviews/${reviewId}/helpful`,
     method: 'put',
-    headers: {'Authorization' : API_TOKEN },
+    headers: {'Authorization' : CONFIG.API_TOKEN },
   });
 }
 
@@ -73,7 +73,7 @@ const reportReview = (reviewId) => {
     baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp',
     url: `/reviews/${reviewId}/report`,
     method: 'put',
-    headers: {'Authorization' : API_TOKEN },
+    headers: {'Authorization' : CONFIG.API_TOKEN },
   });
 }
 
